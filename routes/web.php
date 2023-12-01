@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminEvent\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin-event')->name('admin-event.')->middleware(['auth', 'role:admin-event'])->group(
+    function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    }
+);
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

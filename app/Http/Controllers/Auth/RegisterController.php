@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $admin->assignRole('event-admin');
+        $admin->assignRole('admin-event');
 
         return $admin;
     }
